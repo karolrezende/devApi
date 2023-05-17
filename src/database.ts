@@ -27,3 +27,5 @@ const startDatabase = async () => {
 };
 
 export { client, startDatabase };
+
+export {client, startDatabase}
