@@ -7,7 +7,7 @@ create table if not exists developers (
 create table if not exists developers_info (
 	id serial primary key,
 	"developerSince" date not null,
-	"preferedOs" varchar(20) check ("preferedOs" in ('Windows', 'Linux', 'MacOs')),
+	"preferredOS" varchar(20) check ("preferredOS" in ('Windows', 'Linux', 'MacOS')),
 	"developerId" integer unique not null,
 	foreign key ("developerId") references developers(id)
 );

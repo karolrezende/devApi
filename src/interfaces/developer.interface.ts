@@ -16,7 +16,33 @@ interface TgetId {
     developerInfoDeveloperSince?: Date | null ,
     developerInfoPreferredOS?: string | null
 }
+
+//UPDATER POR ID
+
+interface Tupdater{
+    id: number,
+    name: string,
+    email: string
+}
+
+type TupdaterRequest = Omit<Tupdater, "id">
+
+//INSERT INFO 
+
+interface TdeveloperInfo {
+    id: number,
+    developerSince: Date,
+    preferredOS: "Windows" | "MacOS" | "Linux",
+    developerId: number
+}
+
+type TdeveloperInfoRequest = Omit<TdeveloperInfo, "id">
+
 export {Tdeveloper, 
     TdeveloperRequest,
-    TgetId
+    TgetId,
+    Tupdater,
+    TupdaterRequest,
+    TdeveloperInfo,
+    TdeveloperInfoRequest
 }

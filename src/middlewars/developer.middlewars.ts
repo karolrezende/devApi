@@ -25,5 +25,28 @@ const ensureDevExists = async (req: Request, res: Response, next: NextFunction):
 
     next() //senão ele da next
 }
+const ensureMailExists = async (req: Request,res: Response, next: NextFunction): Promise<Response|void> =>{
+    const mail = req.body.email
 
-export {ensureDevExists}
+    const queryStringMail: string = `
+        SELECT *
+        FROM 
+            developers
+        WHERE
+            email = $1;
+    `
+
+    const queryConfigMail: QueryConfig = {
+        text: queryStringMail,
+        values: [mail]
+    }
+
+    const queryResultMail: QueryResult = await client.query(queryConfigMail)
+    if(queryResultMail.rowCount > 0){
+        return res.status(409).json({
+            message: "Email already exists >:("
+        })
+    }
+    next()
+}
+export {ensureDevExists ,ensureMailExists}
