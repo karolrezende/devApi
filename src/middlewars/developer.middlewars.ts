@@ -4,8 +4,15 @@ import { client } from "../database";
 
 //middleware para verificar se o dev existe
 const ensureDevExists = async (req: Request, res: Response, next: NextFunction): Promise<Response|void> =>{
-    const id: number = Number(req.params.id)
+    let id: number = Number(req.params.id)
+    console.log(req.path)
+    if (req.route?.path === '/projects'){
+        id = Number(req.body.developerId)
+    }
 
+    if(req.route?.path === '/projects/:id'){
+        id = Number(req.body.developerId)
+    }
     const queryString: string = `
         SELECT * 
         FROM developers
@@ -18,7 +25,6 @@ const ensureDevExists = async (req: Request, res: Response, next: NextFunction):
     }
     
     const queryResult : QueryResult = await client.query(queryConfig)
-
     if(queryResult.rowCount === 0){
         return res.status(404).json({message: "developer not found"}) // caso não exista retorna essa msg
     }

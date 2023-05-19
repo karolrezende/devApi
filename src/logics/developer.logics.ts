@@ -99,7 +99,7 @@ const deleteDeveloper = async (req: Request, res: Response): Promise<Response> =
 
     await client.query(queryConfig)
 
-    return res.status(204)
+    return res.sendStatus(204)
 }
 const createDevelopersInfo = async (req: Request, res: Response): Promise<Response> =>{
     const id:number = Number(req.params.id)

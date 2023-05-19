@@ -15,9 +15,10 @@ create table if not exists projects (
 	id serial primary key,
 	"name" varchar(50) not null,
 	"description" varchar(50),
-	"estimateTime" varchar(50) not null,
+	"estimatedTime" varchar(50) not null,
 	"repository" varchar(50) not null,
 	"startDate" date not null, 
+	"endDate" date,
 	"developerId" integer not null,
 	foreign key ("developerId") references developers(id)
 );
