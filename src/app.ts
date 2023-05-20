@@ -1,7 +1,7 @@
 import express, { Application, json} from "express";
 import { ensureDevExists, ensureMailExists } from "./middlewars/developer.middlewars";
 import { createDevelopers, createDevelopersInfo, deleteDeveloper, getDevelopersById, patchDevelopers } from "./logics/developer.logics";
-import { createProject, deleteProject, getProjectById, patchProject, createProjectTechnologie } from "./logics/project.logics";
+import { createProject, deleteProject, getProjectById, patchProject, createProjectTechnologie, deleteProjectTechnology } from "./logics/project.logics";
 import { ensureProjectExists } from "./middlewars/project.middlewars";
 
 const app: Application = express()
@@ -20,6 +20,6 @@ app.get('/projects/:id',ensureProjectExists, getProjectById)
 app.patch('/projects/:id', ensureDevExists, ensureProjectExists, patchProject)
 app.delete('/projects/:id', ensureProjectExists, deleteProject)
 app.post('/projects/:id/technologies', ensureProjectExists, createProjectTechnologie)
-app.delete('/projects/:id/technologies/:name')
+app.delete('/projects/:id/technologies/:name', deleteProjectTechnology)
 
 export default app

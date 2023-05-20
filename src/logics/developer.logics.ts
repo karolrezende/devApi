@@ -10,11 +10,11 @@ const getDevelopersById = async (req: Request, res: Response): Promise<Response>
 
     const queryString: string = `
     SELECT 
-	    d.id "developerId",
+	    d."id" "developerId",
 	    d."name" "developerName" ,
-	    d.email "developerEmail",
+	    d."email" "developerEmail",
 	    di."developerSince" "developerInfoDeveloperSince",
-	    di."preferedOs" "developerInfoPreferredOS"
+	    di."preferedOs" "developerInfoPreferedOS"
     FROM 
         developers d
     LEFT JOIN 
